@@ -1,16 +1,27 @@
 # X2U iOS App
 
-X2U is an iOS SwiftUI app that extends the Cyber2U concept from cybersecurity-only training into multiple learning domains.
+X2U is the mobile client for the X2U learning platform. It is built with SwiftUI and focuses on quick course browsing, quiz completion, and progress tracking on iPhone and iPad.
 
-## Implemented Features
+## What the App Does
 
-- Browse multiple course areas
-- Subscribe and unsubscribe to courses
-- Complete quizzes directly in-app
-- Track completion and latest score in a dedicated progress screen
-- Persist subscriptions and progress locally with UserDefaults
+- Shows available learning tracks from the X2U backend
+- Lets learners subscribe and unsubscribe from courses
+- Supports in-app quiz sessions with immediate scoring
+- Displays course progress, completion ratios, and recent performance
+- Persists local state so progress survives app relaunches
 
-## Domains Included
+## Included Domains
+
+The app currently includes learning content in these areas:
+
+- Cybersecurity
+- Data & AI
+- Product & Design
+- Business & Finance
+
+## How It Fits the Project
+
+The iOS app is one part of the broader X2U project. The repo root contains the backend and supporting web tooling, while this directory contains the native mobile experience.
 
 - Cybersecurity
 - Data & AI

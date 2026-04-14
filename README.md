@@ -1,14 +1,25 @@
-# Cyber2U: Interactive Email-Based Cybersecurity Awareness Platform
+# X2U: Multi-Platform Learning App
 
 ## Overview
 
-Cyber2U is an interactive, email-driven platform designed to raise cybersecurity literacy and awareness among students, employees, and the general public. The platform delivers:
+X2U is a cross-platform learning project built around a shared backend and an iOS client. The product combines structured learning content, quizzes, progress tracking, and course subscriptions across multiple domains.
 
-- **Weekly cybersecurity emails** with tips, facts, and interactive case studies
-- **Monthly assessments** to test knowledge and track progress
-- **Learner dashboards** showing progress, topic mastery, and improvement trends
-- **Admin content workflow** for creating, reviewing, and scheduling campaigns
-- **Analytics reporting** aligned to project objectives
+The repository includes:
+
+- **Backend services** for authentication, progress tracking, quiz review, feedback, and course data
+- **Web client** for the broader learning experience and operational flows
+- **X2U iOS app** for mobile-first course browsing, quiz-taking, and local progress tracking
+- **Supporting scripts and documentation** for generated study artifacts and validation
+
+## Purpose
+
+X2U is intended to help learners move through curated course content and assess their knowledge with lightweight, repeatable quizzes. The app focuses on:
+
+- Browsing available learning tracks
+- Subscribing and unsubscribing to courses
+- Completing quizzes and seeing immediate progress updates
+- Tracking learner progress over time
+- Syncing with backend services where applicable
 
 ## App Screenshots
 
@@ -23,32 +34,16 @@ These screenshots are generated from a Playwright run and committed to this repo
 ![Case Study Question](docs/screenshots/09-case-study-question.png)
 
 Walkthrough video (Playwright-generated):
-- [Cyber2U App Walkthrough](docs/videos/cyber2u-walkthrough.webm)
+- [X2U App Walkthrough](docs/videos/cyber2u-walkthrough.webm)
 
 ## Features
 
-### Phase 1: Foundation (Current)
-- [x] Project scaffolding (backend, frontend, database)
-- [x] Database schema and migrations
-- [x] Local development environment (docker-compose)
-- [x] Authentication middleware
-
-### Phase 2: Authentication (Next)
-- [ ] Magic-link email authentication
-- [ ] Session management
-- [ ] GDPR consent capture
-
-### Phase 3: Formsubmit Integration
-- [x] Signup form ingestion (webhook endpoint)
-- [x] User deduplication and normalization
-- [x] Verification email workflow
-
-### Phase 4-8: Core Features (Planned)
-- [ ] Quiz engine and scoring
-- [ ] Progress tracking
-- [ ] Content operations admin interface
-- [ ] Campaign scheduling and delivery
-- [x] Analytics and reporting (summary + quarterly endpoints)
+### Core Areas
+- [x] Backend APIs for course, quiz, and progress workflows
+- [x] X2U iOS client with local and remote learning flows
+- [x] Persistent quiz and subscription state
+- [x] Validation and study artifact tooling
+- [ ] Further cross-device sync and user account flows
 
 ## Quick Start
 
@@ -152,24 +147,29 @@ npm run migrate
 └────────────────────────────────────────────────────────┘
 ```
 
-## API Endpoints (Planned)
+## API Endpoints
 
 ### Authentication
 - `POST /api/auth/request-magic-link` — Request email verification
 - `POST /api/auth/verify` — Verify magic link and create session
 - `GET /api/auth/profile` — Get authenticated user profile
 
+### Courses
+- `GET /api/courses` — List available learning tracks
+- `POST /api/courses/:id/subscribe` — Subscribe to a course
+- `POST /api/courses/:id/unsubscribe` — Unsubscribe from a course
+
 ### Formsubmit Webhook
 - `POST /api/webhook/formsubmit` — Accepts formsubmit payload, normalizes email, creates verification token, and sends magic-link email
 
-Example HTML form (formsubmit -> Cyber2U webhook):
+Example HTML form (formsubmit -> X2U webhook):
 
 ```html
 <form action="https://formsubmit.co/your-formsubmit-id" method="POST">
     <input type="email" name="email" required />
     <input type="hidden" name="source" value="landing-page" />
     <input type="hidden" name="_next" value="http://localhost:3001/thanks" />
-    <button type="submit">Join Cyber2U</button>
+    <button type="submit">Join X2U</button>
 </form>
 ```
 
