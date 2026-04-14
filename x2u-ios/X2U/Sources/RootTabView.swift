@@ -10,12 +10,7 @@ struct RootTabView: View {
 
             CoursesView()
                 .tabItem {
-                    Label("Learning", systemImage: "books.vertical")
-                }
-
-            CoursesLibraryView()
-                .tabItem {
-                    Label("Driving", systemImage: "car")
+                    Label("Courses", systemImage: "books.vertical")
                 }
 
             AttemptsView()

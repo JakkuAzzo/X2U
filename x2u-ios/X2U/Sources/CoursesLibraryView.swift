@@ -2,20 +2,19 @@ import SwiftUI
 
 struct CoursesLibraryView: View {
     @EnvironmentObject private var appState: AppState
+    let onSwitchCourse: () -> Void
 
     var body: some View {
-        NavigationStack {
-            content
-            .navigationTitle("Driving Theory")
-            .navigationBarTitleDisplayMode(.inline)
-            .x2uScreenBackground()
-        }
+        content
+            .background(X2UTheme.pageBackground)
     }
 
     @ViewBuilder
     private var content: some View {
         if appState.drivingTheoryCourses.isEmpty {
             VStack(spacing: 16) {
+                topBar
+
                 Image(systemName: "book")
                     .font(.system(size: 48))
                     .foregroundStyle(X2UTheme.slate)
@@ -35,17 +34,32 @@ struct CoursesLibraryView: View {
                 .tint(X2UTheme.accent)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(X2UTheme.pageBackground)
         } else {
             ScrollView {
-                VStack(spacing: 12) {
+                VStack(spacing: 16) {
+                    topBar
+
                     ForEach(appState.drivingTheoryCourses) { course in
                         courseCard(course)
                     }
                 }
-                .padding(20)
             }
-            .background(X2UTheme.pageBackground)
+            .padding(20)
+        }
+    }
+
+    private var topBar: some View {
+        HStack {
+            Button("Switch Course") {
+                onSwitchCourse()
+            }
+            .buttonStyle(.bordered)
+            .tint(X2UTheme.accent)
+
+            Spacer()
+
+            Image(systemName: "car")
+                .foregroundStyle(X2UTheme.accent)
         }
     }
 

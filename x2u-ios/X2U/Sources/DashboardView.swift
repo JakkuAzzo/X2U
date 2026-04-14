@@ -91,6 +91,12 @@ struct DashboardView: View {
 
     private var hero: some View {
         VStack(alignment: .leading, spacing: 8) {
+            Image("X2ULogo")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 84, height: 84)
+                .shadow(color: .black.opacity(0.14), radius: 14, x: 0, y: 6)
+
             Text("Personalized Learning")
                 .font(.caption)
                 .fontWeight(.semibold)
