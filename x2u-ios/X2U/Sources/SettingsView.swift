@@ -87,7 +87,7 @@ struct SettingsView: View {
                     HStack {
                         Text("Backend")
                         Spacer()
-                        Text("Cyber2U")
+                        Text("X2U")
                             .foregroundStyle(X2UTheme.slate)
                     }
                 }

@@ -19,7 +19,7 @@ struct LiveQuizSessionView: View {
                             .fontWeight(.bold)
                             .foregroundStyle(X2UTheme.ink)
 
-                        Text("Submit answers to sync quiz attempts and progress with Cyber2U.")
+                        Text("Submit answers to sync quiz attempts and progress with X2U.")
                             .foregroundStyle(X2UTheme.slate)
                     }
                 }
@@ -38,7 +38,7 @@ struct LiveQuizSessionView: View {
                     }
                 }
 
-                Button("Submit to Cyber2U") {
+                Button("Submit to X2U") {
                     Task {
                         result = await appState.submitLiveQuiz(sessionId: session.sessionId, answers: selectedOptionByQuestionID)
                     }

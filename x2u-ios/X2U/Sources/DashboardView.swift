@@ -12,7 +12,7 @@ struct DashboardView: View {
                     CardView {
                         VStack(alignment: .leading, spacing: 10) {
                             HStack {
-                                Text(appState.isConnected ? "Connected to Cyber2U API" : "Not Connected")
+                                Text(appState.isConnected ? "Connected to X2U API" : "Not Connected")
                                     .font(.headline)
                                     .foregroundStyle(X2UTheme.ink)
                                 Spacer()
@@ -101,7 +101,7 @@ struct DashboardView: View {
                 .font(.title3)
                 .fontWeight(.bold)
 
-            Text("Inspired by Cyber2U, expanded for broader learning and testing.")
+            Text("Inspired by X2U, expanded for broader learning and testing.")
                 .font(.subheadline)
                 .opacity(0.92)
         }

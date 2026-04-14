@@ -1,6 +1,6 @@
 name: X2U
 options:
-  bundleIdPrefix: com.cyber2u
+  bundleIdPrefix: com.x2u
 settings:
   base:
     SWIFT_VERSION: 5.0
@@ -13,7 +13,7 @@ targets:
       - X2U/Sources
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.cyber2u.x2u
+        PRODUCT_BUNDLE_IDENTIFIER: com.x2u.x2u
         PRODUCT_NAME: X2U
         INFOPLIST_KEY_CFBundleDisplayName: X2U
         INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES

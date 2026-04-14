@@ -257,11 +257,13 @@ struct QuizReviewQuestion: Codable, Identifiable {
     }
 }
 
-struct QuizReviewPayload: Codable {
+struct QuizReviewPayload: Codable, Identifiable {
     let sessionId: Int
     let sessionType: String
     let completedAt: String
     let totalScore: Double
     let passed: Bool
     let questions: [QuizReviewQuestion]
+
+    var id: Int { sessionId }
 }

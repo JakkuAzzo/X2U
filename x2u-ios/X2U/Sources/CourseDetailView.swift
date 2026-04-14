@@ -29,7 +29,7 @@ struct CourseDetailView: View {
 
                 CardView {
                     VStack(alignment: .leading, spacing: 10) {
-                        Text("Live Cyber2U Quizzes")
+                        Text("Live X2U Quizzes")
                             .font(.headline)
                             .foregroundStyle(X2UTheme.ink)
 

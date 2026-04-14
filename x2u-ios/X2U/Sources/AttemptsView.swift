@@ -7,43 +7,44 @@ struct AttemptsView: View {
 
     var body: some View {
         NavigationStack {
-            if appState.quizHistory.isEmpty {
-                VStack(spacing: 16) {
-                    Image(systemName: "checkmark.circle")
-                        .font(.system(size: 48))
-                        .foregroundStyle(X2UTheme.slate)
-
-                    Text("No Quiz Attempts Yet")
-                        .font(.headline)
-                        .foregroundStyle(X2UTheme.ink)
-
-                    Text("Complete quizzes to see your history and review answers here.")
-                        .foregroundStyle(X2UTheme.slate)
-                        .multilineTextAlignment(.center)
-                }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .background(X2UTheme.pageBackground)
-            } else {
-                ScrollView {
-                    VStack(spacing: 12) {
-                        ForEach(appState.quizHistory.sorted { $0.completedAt > $1.completedAt }) { attempt in
-                            attemptCard(attempt)
-                        }
-                    }
-                    .padding(20)
-                }
-                .background(X2UTheme.pageBackground)
-            }
-
+            content
             .navigationTitle("Quiz Attempts")
             .navigationBarTitleDisplayMode(.inline)
             .x2uScreenBackground()
         }
-        .sheet(item: Binding(
-            get: { selectedReview },
-            set: { selectedReview = $0 }
-        )) { review in
+        .sheet(item: $selectedReview) { review in
             QuizReviewDetailsView(review: review)
+        }
+    }
+
+    @ViewBuilder
+    private var content: some View {
+        if appState.quizHistory.isEmpty {
+            VStack(spacing: 16) {
+                Image(systemName: "checkmark.circle")
+                    .font(.system(size: 48))
+                    .foregroundStyle(X2UTheme.slate)
+
+                Text("No Quiz Attempts Yet")
+                    .font(.headline)
+                    .foregroundStyle(X2UTheme.ink)
+
+                Text("Complete quizzes to see your history and review answers here.")
+                    .foregroundStyle(X2UTheme.slate)
+                    .multilineTextAlignment(.center)
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(X2UTheme.pageBackground)
+        } else {
+            ScrollView {
+                VStack(spacing: 12) {
+                    ForEach(appState.quizHistory.sorted { $0.completedAt > $1.completedAt }) { attempt in
+                        attemptCard(attempt)
+                    }
+                }
+                .padding(20)
+            }
+            .background(X2UTheme.pageBackground)
         }
     }
 
