@@ -45,7 +45,7 @@ export const FeedbackForm: React.FC = () => {
         screenshots,
       });
 
-      setSuccess('Feedback submitted. Thank you for helping improve Cyber2U.');
+      setSuccess('Feedback submitted. Thank you for helping improve X2U.');
     } catch (err: any) {
       setError(err?.response?.data?.error || 'Could not submit feedback response.');
     } finally {
@@ -56,7 +56,7 @@ export const FeedbackForm: React.FC = () => {
   return (
     <div className="dashboard-shell">
       <section className="panel-card feedback-panel">
-        <h2>Cyber2U Feedback Form</h2>
+        <h2>X2U Feedback Form</h2>
         <p className="panel-subtitle">
           Share your journey experience to support methodology and validation reporting.
         </p>
@@ -159,7 +159,7 @@ export const FeedbackForm: React.FC = () => {
               checked={wouldContinue}
               onChange={(event) => setWouldContinue(event.target.checked)}
             />
-            <span>I would continue using Cyber2U for future learning</span>
+            <span>I would continue using X2U for future learning</span>
           </label>
 
           <label>

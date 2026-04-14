@@ -50,7 +50,7 @@ export async function sendEmail(options: EmailOptions): Promise<void> {
 export function generateMagicLinkEmail(verificationLink: string, email: string): { html: string; text: string } {
   const html = `
     <div style="font-family: Arial, sans-serif; max-width: 600px;">
-      <h2>Welcome to Cyber2You</h2>
+      <h2>Welcome to X2U</h2>
       <p>Hi there,</p>
       <p>Click the link below to verify your email and get started on your cybersecurity journey:</p>
       <p style="margin: 30px 0;">
@@ -75,7 +75,7 @@ export function generateMagicLinkEmail(verificationLink: string, email: string):
   `;
 
   const text = `
-    Welcome to Cyber2You
+    Welcome to X2U
 
     Click this link to verify your email and get started:
     ${verificationLink}
@@ -91,7 +91,7 @@ export function generateMagicLinkEmail(verificationLink: string, email: string):
 export function generateDemoQuizEmail(quizLink: string): { html: string; text: string } {
   const html = `
     <div style="font-family: Arial, sans-serif; max-width: 640px; margin: 0 auto; color: #0f172a;">
-      <h2 style="margin-bottom: 8px;">Weekly Cyber2U Quiz</h2>
+      <h2 style="margin-bottom: 8px;">Weekly X2U Quiz</h2>
       <p style="margin-top: 0; color: #334155;">Complete this mini challenge to improve your cybersecurity awareness.</p>
 
       <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px; margin: 20px 0;">
@@ -118,7 +118,7 @@ export function generateDemoQuizEmail(quizLink: string): { html: string; text: s
   `;
 
   const text = `
-Weekly Cyber2U Quiz
+Weekly X2U Quiz
 
 Question 1:
 What is the safest response to an urgent password reset email you did not request?
@@ -137,7 +137,7 @@ Open Interactive Quiz: ${quizLink}
 export async function sendWelcomeEmail(email: string): Promise<void> {
   const html = `
     <div style="font-family: Arial, sans-serif; max-width: 600px;">
-      <h2>Welcome to Cyber2You!</h2>
+      <h2>Welcome to X2U!</h2>
       <p>Your email has been verified. You're now ready to start learning about cybersecurity!</p>
       <p>This week's cybersecurity tip:</p>
       <div style="background: #f0f0f0; padding: 20px; border-radius: 5px; margin: 20px 0;">
@@ -149,7 +149,7 @@ export async function sendWelcomeEmail(email: string): Promise<void> {
   `;
 
   const text = `
-    Welcome to Cyber2You!
+    Welcome to X2U!
 
     Your email has been verified. Start learning about cybersecurity today.
 
@@ -158,7 +158,7 @@ export async function sendWelcomeEmail(email: string): Promise<void> {
 
   await sendEmail({
     to: email,
-    subject: 'Welcome to Cyber2You - Your Cybersecurity Education Starts Here',
+    subject: 'Welcome to X2U - Your Learning Journey Starts Here',
     html,
     text,
   });
@@ -169,7 +169,7 @@ export async function sendDemoQuizEmail(email: string, quizLink: string): Promis
 
   await sendEmail({
     to: email,
-    subject: 'Cyber2U Weekly Quiz: Spot the Phish',
+    subject: 'X2U Weekly Quiz: Spot the Phish',
     html,
     text,
   });

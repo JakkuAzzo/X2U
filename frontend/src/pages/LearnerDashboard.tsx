@@ -373,7 +373,7 @@ export const LearnerDashboard: React.FC = () => {
 
       <section className="panel-card interests-panel">
         <h3>Customize Your Cybersecurity Interests</h3>
-        <p className="panel-subtitle">Select the areas you want Cyber2U to emphasize.</p>
+        <p className="panel-subtitle">Select the areas you want X2U to emphasize.</p>
         <div className="interest-grid dashboard-interest-grid">
           {INTEREST_OPTIONS.map((topic) => (
             <label key={topic.key} className="interest-option dashboard-interest-option">

@@ -13,7 +13,7 @@ const AppShell: React.FC = () => {
   return (
     <>
       <header className="top-nav">
-        <span className="top-nav-title">Cyber2U</span>
+        <span className="top-nav-title">X2U</span>
       </header>
       <Outlet />
     </>

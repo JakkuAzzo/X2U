@@ -345,8 +345,8 @@ export async function sendCampaignNow(campaignId: number): Promise<{ campaign: C
   );
 
   for (const user of users.rows) {
-    const subject = version.subject_line || `${campaign.title} - Cyber2U`;
-    const textBody = version.email_body_text || 'New Cyber2U learning content is available.';
+    const subject = version.subject_line || `${campaign.title} - X2U`;
+    const textBody = version.email_body_text || 'New X2U learning content is available.';
     const htmlBody = version.email_body_html || `<p>${textBody}</p>`;
 
     await sendEmail({

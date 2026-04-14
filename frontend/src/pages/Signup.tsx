@@ -48,7 +48,7 @@ export const Signup: React.FC = () => {
   return (
     <div className="auth-container">
       <div className="auth-card">
-        <h2>Login to Cyber2You</h2>
+        <h2>Login to X2U</h2>
         <p>Enter your email to receive a magic login link.</p>
         <p className="subtitle">No password needed. We'll send you a secure link to log in.</p>
         <form onSubmit={handleSubmit}>

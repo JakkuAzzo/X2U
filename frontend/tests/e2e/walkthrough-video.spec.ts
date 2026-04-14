@@ -13,7 +13,7 @@ async function pollForDemoQuizEmail(request: APIRequestContext, recipientEmail: 
       const items: unknown[] = body.items || [];
       const found = items.some((item) => {
         const raw = JSON.stringify(item).toLowerCase();
-        return raw.includes(recipientEmail.toLowerCase()) && raw.includes('cyber2u weekly quiz: spot the phish');
+        return raw.includes(recipientEmail.toLowerCase()) && raw.includes('x2u weekly quiz: spot the phish');
       });
 
       if (found) {
@@ -35,24 +35,24 @@ async function assertQuizContentInMailhogApi(request: APIRequestContext, recipie
 
   const target = items.find((item) => {
     const raw = JSON.stringify(item).toLowerCase();
-    return raw.includes(recipientEmail.toLowerCase()) && raw.includes('cyber2u weekly quiz: spot the phish');
+    return raw.includes(recipientEmail.toLowerCase()) && raw.includes('x2u weekly quiz: spot the phish');
   });
 
   expect(target).toBeTruthy();
   const serialized = JSON.stringify(target);
-  expect(serialized).toContain('Weekly Cyber2U Quiz');
+  expect(serialized).toContain('Weekly X2U Quiz');
   expect(serialized).toContain('What is the safest response to an urgent');
   expect(serialized).toContain('password reset email you did not request?');
   expect(serialized).toContain('Open Interactive Quiz');
 }
 
-test.describe('Cyber2U Walkthrough Video', () => {
+test.describe('X2U Walkthrough Video', () => {
   test('setup to user testing and visualisation flow', async ({ page, request }) => {
     test.setTimeout(180000);
 
     // 1) Landing page
     await page.goto('/');
-    await expect(page.getByRole('heading', { name: 'Join Cyber2You' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Join X2U' })).toBeVisible();
     await page.waitForTimeout(1200);
 
     // 2) Bootstrap seeded demo user
@@ -145,7 +145,7 @@ test.describe('Cyber2U Walkthrough Video', () => {
     await expect(page.getByText(recipientEmail).first()).toBeVisible();
     await page.getByText(recipientEmail).first().click();
 
-    await expect(page.getByText(/Cyber2U Weekly Quiz: Spot the Phish/i).first()).toBeVisible();
+    await expect(page.getByText(/X2U Weekly Quiz: Spot the Phish/i).first()).toBeVisible();
     await page.waitForTimeout(1800);
   });
 });

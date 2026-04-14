@@ -9,7 +9,7 @@ function screenshotPath(filename: string): string {
   return path.join(screenshotDir, filename);
 }
 
-test.describe('Cyber2U Usage Screenshots', () => {
+test.describe('X2U Usage Screenshots', () => {
   test.beforeAll(async () => {
     fs.mkdirSync(screenshotDir, { recursive: true });
   });
@@ -17,7 +17,7 @@ test.describe('Cyber2U Usage Screenshots', () => {
   test('capture app usage screens', async ({ page }) => {
     // 1) Signup landing screen
     await page.goto('/');
-    await expect(page.getByRole('heading', { name: 'Join Cyber2You' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Join X2U' })).toBeVisible();
     await page.screenshot({
       path: screenshotPath('01-signup-page.png'),
       fullPage: true,
