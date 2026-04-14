@@ -1,14 +1,16 @@
-# Cyber2U: Interactive Email-Based Cybersecurity Awareness Platform
+# X2U: Multi-Platform Learning App
 
 ## Overview
 
-Cyber2U is an interactive, email-driven platform designed to raise cybersecurity literacy and awareness among students, employees, and the general public. The platform delivers:
+X2U is a learning platform built around a shared backend and multiple clients, including the native iOS app in this repository. It is designed to help learners browse structured course content, complete quizzes, and track progress across multiple subject areas.
 
-- **Weekly cybersecurity emails** with tips, facts, and interactive case studies
-- **Monthly assessments** to test knowledge and track progress
-- **Learner dashboards** showing progress, topic mastery, and improvement trends
-- **Admin content workflow** for creating, reviewing, and scheduling campaigns
-- **Analytics reporting** aligned to project objectives
+The platform delivers:
+
+- **Course browsing and subscriptions** for available learning tracks
+- **In-app quizzes** to test knowledge and record scores
+- **Progress dashboards** showing completion and improvement trends
+- **Backend APIs** for authentication, course data, quizzes, progress, and analytics
+- **Supporting tooling** for local development, validation, and generated study artifacts
 
 ## App Screenshots
 
@@ -23,32 +25,16 @@ These screenshots are generated from a Playwright run and committed to this repo
 ![Case Study Question](docs/screenshots/09-case-study-question.png)
 
 Walkthrough video (Playwright-generated):
-- [Cyber2U App Walkthrough](docs/videos/cyber2u-walkthrough.webm)
+- [X2U App Walkthrough](docs/videos/cyber2u-walkthrough.webm)
 
 ## Features
 
-### Phase 1: Foundation (Current)
-- [x] Project scaffolding (backend, frontend, database)
-- [x] Database schema and migrations
-- [x] Local development environment (docker-compose)
-- [x] Authentication middleware
-
-### Phase 2: Authentication (Next)
-- [ ] Magic-link email authentication
-- [ ] Session management
-- [ ] GDPR consent capture
-
-### Phase 3: Formsubmit Integration
-- [x] Signup form ingestion (webhook endpoint)
-- [x] User deduplication and normalization
-- [x] Verification email workflow
-
-### Phase 4-8: Core Features (Planned)
-- [ ] Quiz engine and scoring
-- [ ] Progress tracking
-- [ ] Content operations admin interface
-- [ ] Campaign scheduling and delivery
-- [x] Analytics and reporting (summary + quarterly endpoints)
+### Core Areas
+- [x] Backend APIs for authentication, quizzes, progress, and analytics
+- [x] Web and mobile clients for the X2U learning experience
+- [x] Local state persistence for app interactions
+- [x] Validation and study artifact tooling
+- [ ] Further cross-device sync and user account flows
 
 ## Quick Start
 
@@ -162,14 +148,14 @@ npm run migrate
 ### Formsubmit Webhook
 - `POST /api/webhook/formsubmit` — Accepts formsubmit payload, normalizes email, creates verification token, and sends magic-link email
 
-Example HTML form (formsubmit -> Cyber2U webhook):
+Example HTML form (formsubmit -> X2U webhook):
 
 ```html
 <form action="https://formsubmit.co/your-formsubmit-id" method="POST">
     <input type="email" name="email" required />
     <input type="hidden" name="source" value="landing-page" />
     <input type="hidden" name="_next" value="http://localhost:3001/thanks" />
-    <button type="submit">Join Cyber2U</button>
+    <button type="submit">Join X2U</button>
 </form>
 ```
 
