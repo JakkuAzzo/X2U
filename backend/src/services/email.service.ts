@@ -1,5 +1,12 @@
+import path from 'path';
 import nodemailer from 'nodemailer';
 import config from '../config';
+
+const brandLogoAttachment = {
+  filename: 'x2u-logo.png',
+  path: path.resolve(__dirname, '../assets/x2u-logo.png'),
+  cid: 'x2u-logo',
+};
 
 let transporter: nodemailer.Transporter | null = null;
 
@@ -31,6 +38,11 @@ interface EmailOptions {
   subject: string;
   html: string;
   text: string;
+  attachments?: Array<{
+    filename: string;
+    path?: string;
+    cid?: string;
+  }>;
 }
 
 export async function sendEmail(options: EmailOptions): Promise<void> {
@@ -39,6 +51,7 @@ export async function sendEmail(options: EmailOptions): Promise<void> {
     await transporter.sendMail({
       from: config.email.from,
       ...options,
+      attachments: [brandLogoAttachment, ...(options.attachments || [])],
     });
     console.log(`Email sent to ${options.to}`);
   } catch (error) {
@@ -50,7 +63,10 @@ export async function sendEmail(options: EmailOptions): Promise<void> {
 export function generateMagicLinkEmail(verificationLink: string, email: string): { html: string; text: string } {
   const html = `
     <div style="font-family: Arial, sans-serif; max-width: 600px;">
-      <h2>Welcome to X2U</h2>
+      <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 24px;">
+        <img src="cid:x2u-logo" alt="X2U logo" style="width: 52px; height: 52px; border-radius: 14px; display: block;" />
+        <h2 style="margin: 0;">Welcome to X2U</h2>
+      </div>
       <p>Hi there,</p>
       <p>Click the link below to verify your email and get started on your cybersecurity journey:</p>
       <p style="margin: 30px 0;">
@@ -91,8 +107,13 @@ export function generateMagicLinkEmail(verificationLink: string, email: string):
 export function generateDemoQuizEmail(quizLink: string): { html: string; text: string } {
   const html = `
     <div style="font-family: Arial, sans-serif; max-width: 640px; margin: 0 auto; color: #0f172a;">
-      <h2 style="margin-bottom: 8px;">Weekly X2U Quiz</h2>
-      <p style="margin-top: 0; color: #334155;">Complete this mini challenge to improve your cybersecurity awareness.</p>
+      <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 18px;">
+        <img src="cid:x2u-logo" alt="X2U logo" style="width: 52px; height: 52px; border-radius: 14px; display: block;" />
+        <div>
+          <h2 style="margin: 0;">Weekly X2U Quiz</h2>
+          <p style="margin: 6px 0 0; color: #334155;">Complete this mini challenge to improve your cybersecurity awareness.</p>
+        </div>
+      </div>
 
       <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px; margin: 20px 0;">
         <h3 style="margin-top: 0;">Question 1</h3>
@@ -137,7 +158,10 @@ Open Interactive Quiz: ${quizLink}
 export async function sendWelcomeEmail(email: string): Promise<void> {
   const html = `
     <div style="font-family: Arial, sans-serif; max-width: 600px;">
-      <h2>Welcome to X2U!</h2>
+      <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 24px;">
+        <img src="cid:x2u-logo" alt="X2U logo" style="width: 52px; height: 52px; border-radius: 14px; display: block;" />
+        <h2 style="margin: 0;">Welcome to X2U!</h2>
+      </div>
       <p>Your email has been verified. You're now ready to start learning about cybersecurity!</p>
       <p>This week's cybersecurity tip:</p>
       <div style="background: #f0f0f0; padding: 20px; border-radius: 5px; margin: 20px 0;">

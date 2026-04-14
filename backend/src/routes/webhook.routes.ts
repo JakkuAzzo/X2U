@@ -69,7 +69,7 @@ router.post('/formsubmit', async (req: Request, res: Response) => {
 
     await sendEmail({
       to: email,
-      subject: 'Verify your email - Cyber2You',
+      subject: 'Verify your email - X2U',
       html,
       text,
     });

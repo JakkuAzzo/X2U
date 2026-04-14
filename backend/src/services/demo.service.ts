@@ -31,7 +31,7 @@ function buildAnswersFromPayload(payload: {
 }
 
 export async function bootstrapDemoUser(emailInput?: string): Promise<DemoBootstrapResult> {
-  const email = (emailInput || 'demo.user@cyber2u.local').toLowerCase().trim();
+  const email = (emailInput || 'demo.user@x2u.local').toLowerCase().trim();
   const user = await findOrCreateUser(email);
 
   const verificationToken = await createEmailVerification(user.id);

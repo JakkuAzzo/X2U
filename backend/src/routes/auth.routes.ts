@@ -90,7 +90,7 @@ router.post('/request-magic-link', async (req: Request, res: Response) => {
     const { html, text } = generateMagicLinkEmail(magicLink, email);
     await sendEmail({
       to: email,
-      subject: 'Verify your email - Cyber2You',
+      subject: 'Verify your email - X2U',
       html,
       text,
     });

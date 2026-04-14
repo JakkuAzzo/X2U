@@ -49,7 +49,7 @@ async function pollForMail(
 test.describe('MailHog Inbox Screenshots', () => {
   test('signup flow delivers email and shows inbox/message views', async ({ page, request }) => {
     test.setTimeout(120000);
-    const signupEmail = `mailhog.demo.${Date.now()}@cyber2u.local`;
+    const signupEmail = `mailhog.demo.${Date.now()}@x2u.local`;
 
     await waitForApi(request, `${backendBaseUrl}/health`);
     await waitForApi(request, `${mailhogBaseUrl}/api/v2/messages`);

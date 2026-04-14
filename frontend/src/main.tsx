@@ -13,7 +13,10 @@ const AppShell: React.FC = () => {
   return (
     <>
       <header className="top-nav">
-        <span className="top-nav-title">X2U</span>
+        <div className="top-nav-brand">
+          <img className="top-nav-logo" src="/x2u-logo.png" alt="X2U logo" />
+          <span className="top-nav-title">X2U</span>
+        </div>
       </header>
       <Outlet />
     </>
