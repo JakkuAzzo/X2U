@@ -63,10 +63,7 @@ struct CoursesView: View {
 
     private var header: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Image("X2ULogo")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 88, height: 88)
+            X2ULogoView(size: 88)
                 .shadow(color: .black.opacity(0.12), radius: 14, x: 0, y: 6)
 
             Text("Courses")

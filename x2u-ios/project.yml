@@ -12,7 +12,8 @@ targets:
     sources:
       - X2U/Sources
     resources:
-      - X2U/Resources
+      - X2U/Resources/Assets.xcassets
+      - X2U/Resources/LaunchScreen.storyboard
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.x2u.x2u
