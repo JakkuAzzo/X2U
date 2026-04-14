@@ -11,6 +11,7 @@ import webhookRoutes from './routes/webhook.routes';
 import campaignRoutes from './routes/campaign.routes';
 import analyticsRoutes from './routes/analytics.routes';
 import feedbackRoutes from './routes/feedback.routes';
+import coursesRoutes from './routes/courses.routes';
 
 const app: Express = express();
 
@@ -49,6 +50,7 @@ app.get('/health', (req: Request, res: Response) => {
 app.use('/api/auth', authRoutes);
 app.use('/api/quiz', quizRoutes);
 app.use('/api/progress', progressRoutes);
+app.use('/api/courses', coursesRoutes);
 app.use('/api/webhook', webhookRoutes);
 app.use('/api/campaigns', campaignRoutes);
 app.use('/api/analytics', analyticsRoutes);
