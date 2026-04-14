@@ -177,6 +177,7 @@ export const LearnerDashboard: React.FC = () => {
     <div className="dashboard-shell">
       <section className="dashboard-hero">
         <div>
+          <img className="dashboard-logo" src="/x2u-logo.png" alt="X2U logo" />
           <p className="dashboard-eyebrow">Learning Dashboard</p>
           <h2>Your Cyber Literacy Journey</h2>
           <p>
