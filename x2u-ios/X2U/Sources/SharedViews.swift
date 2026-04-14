@@ -52,6 +52,10 @@ struct X2ULogoView: View {
 
 private enum X2ULogoImageLoader {
     static let image: UIImage? = {
+        if let assetImage = UIImage(named: "X2ULogo") {
+            return assetImage
+        }
+
         guard let path = Bundle.main.path(forResource: "X2ULogo", ofType: "png") else {
             return nil
         }

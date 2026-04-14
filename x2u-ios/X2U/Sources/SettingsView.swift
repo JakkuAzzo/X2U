@@ -74,6 +74,11 @@ struct SettingsView: View {
                     }
                     .buttonStyle(.bordered)
                     .tint(X2UTheme.accent)
+
+                    Button("Sign Out", role: .destructive) {
+                        appState.signOut()
+                        dismiss()
+                    }
                 }
 
                 Section("About") {

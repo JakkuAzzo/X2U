@@ -59,13 +59,16 @@ final class AppState: ObservableObject {
         self.drivingTheoryCourses = []
         self.drivingTheorySubscribedCourseIDs = []
         self.quizHistory = []
-        self.apiBaseURL = storage.string(forKey: "x2u.api.baseURL") ?? "http://localhost:3000/api"
+        let savedBaseURL = storage.string(forKey: "x2u.api.baseURL") ?? "http://localhost:3000/api"
+        self.apiBaseURL = APIClient.normalizedBaseURLString(from: savedBaseURL)
         self.authMethod = AuthMethod(rawValue: storage.string(forKey: "x2u.auth.method") ?? "demo_bootstrap") ?? .demoBootstrap
 
         self.storage = storage
         self.tokenKey = tokenKey
         self.stateKey = stateKey
         self.api = api
+
+        storage.set(self.apiBaseURL, forKey: "x2u.api.baseURL")
 
         restoreLocalState()
 
@@ -105,8 +108,18 @@ final class AppState: ObservableObject {
     }
 
     func ensureConnected() async {
-        if authToken == nil {
-            await connectDemoUser(email: nil)
+        guard authToken != nil else {
+            isConnected = false
+            syncError = "Please sign in to continue."
+            return
+        }
+
+        await refreshRemoteState()
+    }
+
+    func restoreSession() async {
+        guard authToken != nil else {
+            isConnected = false
             return
         }
 
@@ -215,8 +228,25 @@ final class AppState: ObservableObject {
     }
 
     func setAPIBaseURL(_ url: String) {
-        apiBaseURL = url
-        storage.set(url, forKey: "x2u.api.baseURL")
+        let normalized = APIClient.normalizedBaseURLString(from: url)
+        apiBaseURL = normalized
+        storage.set(normalized, forKey: "x2u.api.baseURL")
+    }
+
+    func signOut() {
+        authToken = nil
+        profileEmail = nil
+        isConnected = false
+        syncError = nil
+        isSyncing = false
+
+        progressSnapshot = .empty
+        topicHistory = []
+        weeklyQuiz = nil
+        monthlyQuiz = nil
+        drivingTheoryCourses = []
+        drivingTheorySubscribedCourseIDs = []
+        quizHistory = []
     }
 
     func setAuthMethod(_ method: AuthMethod) {

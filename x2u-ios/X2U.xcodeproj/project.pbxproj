@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		03D23885EC9B31422A658B9B /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180BA2A4D5EE2FCFBDC4C742 /* DashboardView.swift */; };
+		0495B3CEA6EC3C462A191E92 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC618BF3D0E500DC7B7A3B0 /* LoginView.swift */; };
 		240D620D588988089DF23D85 /* SharedViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE5920D86023C0C759467D50 /* SharedViews.swift */; };
 		294ED83FB0875F75EA74346B /* SeedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4DF8A642BAEF4D4D3F677BF /* SeedData.swift */; };
 		2DF3FD7D5BD6FE77BEB69343 /* X2ULogo.png in Resources */ = {isa = PBXBuildFile; fileRef = BAE2BE014874DD94414BAF99 /* X2ULogo.png */; };
@@ -48,6 +49,7 @@
 		6D10F613383D45CFA7046554 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		78CFFA641B7D283C088338FD /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		9893D669BFC5E1384F61EFFB /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
+		9EC618BF3D0E500DC7B7A3B0 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		A4DF8A642BAEF4D4D3F677BF /* SeedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeedData.swift; sourceTree = "<group>"; };
 		A52BD1B2B7FBAF646D52B3BE /* AttemptsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttemptsView.swift; sourceTree = "<group>"; };
 		AC58EB5A207BBEB34D1EF129 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 				DDD519675FDE6008001DA795 /* CoursesView.swift */,
 				180BA2A4D5EE2FCFBDC4C742 /* DashboardView.swift */,
 				4C2FA2FE199BA18F485E3F58 /* LiveQuizSessionView.swift */,
+				9EC618BF3D0E500DC7B7A3B0 /* LoginView.swift */,
 				6BC67A520DFFACCD3F7BB02A /* Models.swift */,
 				9893D669BFC5E1384F61EFFB /* ProgressView.swift */,
 				E4D3CF5E874AC1FF15F2D009 /* QuizSessionView.swift */,
@@ -221,6 +224,7 @@
 				7B2C2EC8525ED7424CA02558 /* CoursesView.swift in Sources */,
 				03D23885EC9B31422A658B9B /* DashboardView.swift in Sources */,
 				BFD7F31686DBD88014417413 /* LiveQuizSessionView.swift in Sources */,
+				0495B3CEA6EC3C462A191E92 /* LoginView.swift in Sources */,
 				AEF77262AA80F4F90D3B9397 /* Models.swift in Sources */,
 				CDFF15981B49C5B39E2DFDC4 /* ProgressView.swift in Sources */,
 				AFD4C2A92AF9AAD601429728 /* QuizSessionView.swift in Sources */,

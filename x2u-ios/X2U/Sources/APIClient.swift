@@ -32,7 +32,44 @@ final class APIClient {
     private var baseURL: URL? {
         let stored = UserDefaults.standard.string(forKey: "x2u.api.baseURL")
         let raw = (stored?.isEmpty == false) ? stored! : "http://localhost:3000/api"
-        return URL(string: raw)
+        let normalized = APIClient.normalizedBaseURLString(from: raw)
+        return URL(string: normalized)
+    }
+
+    static func normalizedBaseURLString(from raw: String) -> String {
+        var candidate = raw.trimmingCharacters(in: .whitespacesAndNewlines)
+        if candidate.isEmpty {
+            candidate = "http://localhost:3000/api"
+        }
+
+        if !candidate.contains("://") {
+            candidate = "http://\(candidate)"
+        }
+
+        guard var components = URLComponents(string: candidate) else {
+            return "http://localhost:3000/api"
+        }
+
+        var path = components.path.trimmingCharacters(in: CharacterSet(charactersIn: "/"))
+        let lowerPath = path.lowercased()
+
+        if path.isEmpty {
+            path = "api"
+        } else if !(lowerPath == "api" || lowerPath.hasPrefix("api/")) {
+            path += "/api"
+        }
+
+        components.path = "/\(path)"
+
+        guard var normalized = components.url?.absoluteString else {
+            return "http://localhost:3000/api"
+        }
+
+        while normalized.hasSuffix("/") {
+            normalized.removeLast()
+        }
+
+        return normalized
     }
 
     func bootstrapDemoUser(email: String?) async throws -> DemoBootstrapResponse {
@@ -161,7 +198,7 @@ final class APIClient {
             request.httpBody = try JSONEncoder().encode(body)
         }
 
-        let (data, response) = try await session.data(for: request)
+        let (data, response) = try await performRequestWithLocalhostFallback(request)
 
         guard let httpResponse = response as? HTTPURLResponse else {
             throw APIClientError.invalidResponse
@@ -182,6 +219,29 @@ final class APIClient {
             return try JSONDecoder().decode(T.self, from: data)
         } catch {
             throw APIClientError.invalidResponse
+        }
+    }
+
+    private func performRequestWithLocalhostFallback(_ request: URLRequest) async throws -> (Data, URLResponse) {
+        do {
+            return try await session.data(for: request)
+        } catch let error as URLError {
+            guard let originalURL = request.url,
+                  originalURL.host?.lowercased() == "localhost",
+                  [.cannotConnectToHost, .cannotFindHost, .networkConnectionLost, .timedOut].contains(error.code) else {
+                throw error
+            }
+
+            var fallbackComponents = URLComponents(url: originalURL, resolvingAgainstBaseURL: false)
+            fallbackComponents?.host = "127.0.0.1"
+
+            guard let fallbackURL = fallbackComponents?.url else {
+                throw error
+            }
+
+            var fallbackRequest = request
+            fallbackRequest.url = fallbackURL
+            return try await session.data(for: fallbackRequest)
         }
     }
 }
