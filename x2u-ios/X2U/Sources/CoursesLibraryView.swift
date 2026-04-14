@@ -5,43 +5,47 @@ struct CoursesLibraryView: View {
 
     var body: some View {
         NavigationStack {
-            if appState.drivingTheoryCourses.isEmpty {
-                VStack(spacing: 16) {
-                    Image(systemName: "book")
-                        .font(.system(size: 48))
-                        .foregroundStyle(X2UTheme.slate)
-
-                    Text("No Courses Available")
-                        .font(.headline)
-                        .foregroundStyle(X2UTheme.ink)
-
-                    Text("Check your connection and try refreshing.")
-                        .foregroundStyle(X2UTheme.slate)
-                        .multilineTextAlignment(.center)
-
-                    Button("Refresh") {
-                        Task { await appState.refreshRemoteState() }
-                    }
-                    .buttonStyle(.bordered)
-                    .tint(X2UTheme.accent)
-                }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .background(X2UTheme.pageBackground)
-            } else {
-                ScrollView {
-                    VStack(spacing: 12) {
-                        ForEach(appState.drivingTheoryCourses) { course in
-                            courseCard(course)
-                        }
-                    }
-                    .padding(20)
-                }
-                .background(X2UTheme.pageBackground)
-            }
-
+            content
             .navigationTitle("Driving Theory")
             .navigationBarTitleDisplayMode(.inline)
             .x2uScreenBackground()
+        }
+    }
+
+    @ViewBuilder
+    private var content: some View {
+        if appState.drivingTheoryCourses.isEmpty {
+            VStack(spacing: 16) {
+                Image(systemName: "book")
+                    .font(.system(size: 48))
+                    .foregroundStyle(X2UTheme.slate)
+
+                Text("No Courses Available")
+                    .font(.headline)
+                    .foregroundStyle(X2UTheme.ink)
+
+                Text("Check your connection and try refreshing.")
+                    .foregroundStyle(X2UTheme.slate)
+                    .multilineTextAlignment(.center)
+
+                Button("Refresh") {
+                    Task { await appState.refreshRemoteState() }
+                }
+                .buttonStyle(.bordered)
+                .tint(X2UTheme.accent)
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(X2UTheme.pageBackground)
+        } else {
+            ScrollView {
+                VStack(spacing: 12) {
+                    ForEach(appState.drivingTheoryCourses) { course in
+                        courseCard(course)
+                    }
+                }
+                .padding(20)
+            }
+            .background(X2UTheme.pageBackground)
         }
     }
 
